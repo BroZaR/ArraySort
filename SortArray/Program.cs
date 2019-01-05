@@ -8,6 +8,9 @@ using SortArray.Enter;
 using System.IO;
 using SortArray.Interfases;
 using SortArray.Controller;
+using SortArray.Models;
+using SortArray.Presenters;
+using SortArray.Views;
 
 namespace SortArray
 {
@@ -27,7 +30,12 @@ namespace SortArray
 		static void Main(string[] args)
 		{
 			ConsoleConfig("SortArray");
-			Run();
+			//Run();
+			IModel model = new Model();
+			IView view = new MatrixView();
+
+			MatrixPresenter presenter = new MatrixPresenter(model, view);
+			presenter.Start();
 
 			Console.ReadKey(true);
 		}

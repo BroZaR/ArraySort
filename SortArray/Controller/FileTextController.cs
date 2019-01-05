@@ -35,7 +35,8 @@ namespace SortArray.Controller
 				{
 					return true;
 				}
-				else {
+				else
+				{
 					return false;
 				}
 			}}
