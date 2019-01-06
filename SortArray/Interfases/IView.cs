@@ -1,4 +1,5 @@
-﻿using Common.Events;
+﻿using Common.Enums;
+using Common.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace SortArray.Interfases
 		event EventHandler<EventArgsManually> EventInputManually;
 		event EventHandler<EventArgsFile> EventInputFille;
 		event EventHandler<EventArgsRandom> EventInputRandom;
-		event Action<int> EventSort;
+		event Action<Sorts> EventSort;
 		event Action<bool> Continuation;
+
+		void ShowMainMenu();
+		void ShowSortMenu();
+		void ShowMatrix(int[,] matrix, int time, Sorts type);
 	}
 }

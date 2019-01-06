@@ -18,13 +18,24 @@ namespace SortArray.Presenters
 		}
 
 		public void Start() {
-			view.EnterLine += View_EnterLine;
-			view.Show();
+			view.EventInputManually += View_EventInputManually;
+			view.EventInputFille += View_EventInputFille;
+			view.EventInputRandom += View_EventInputRandom;
 		}
 
-		private void View_EnterLine(string str)
+		private void View_EventInputRandom(object sender, Common.Events.EventArgsRandom e)
 		{
-			Console.WriteLine(str);
+			throw new NotImplementedException();
+		}
+
+		private void View_EventInputFille(object sender, Common.Events.EventArgsFile e)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void View_EventInputManually(object sender, Common.Events.EventArgsManually e)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

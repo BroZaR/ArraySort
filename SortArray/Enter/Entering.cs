@@ -42,7 +42,7 @@ namespace SortArray.Enter
 		public static string EnterStringPrompt(string prompt)
 		{
 			Console.Write("  " + prompt + ": ");
-			return Console.ReadLine();
+			return (Console.ReadLine()).Trim();
 		}
 
 		public static bool EnterBoolUA(string prompt)

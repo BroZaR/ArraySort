@@ -1,9 +1,15 @@
-﻿namespace SortArray
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SortArray
 {
+	public delegate void Command();
+
 	public class CommandInfo
 	{
-		public delegate void Command();
-
 		public string name;
 		public Command command;
 
@@ -12,5 +18,5 @@
 			this.name = name;
 			this.command = command;
 		}
-	}
+	};
 }

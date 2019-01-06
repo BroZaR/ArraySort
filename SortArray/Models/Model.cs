@@ -1,4 +1,4 @@
-﻿using SortArray.Events;
+﻿using Common.Events;
 using SortArray.Interfases;
 using System;
 using System.Collections.Generic;
@@ -11,23 +11,18 @@ namespace SortArray.Models
 	public class Model : IModel
 	{
 		private int[,] matrix;
-		public int[,] Matrix {
-			get {
-				return matrix;
-			} private set {
-				if (value != null) {
-					matrix = value;
-				}
-			}
+
+		public event EventHandler<EventUpdateMatrix> UpdateMatrix;
+
+		public void InputMatrix(int[,] _matrix)
+		{
+			matrix = _matrix;
+			UpdateMatrix(this, new EventUpdateMatrix(matrix));
 		}
 
-		public event EventHandler<EventSortArray> UpdateArray;
-
-		public void Sort(ISort sort)
+		public void SortMatrix(int keyEnum)
 		{
-			sort.Matrix = Matrix;
-			Matrix = sort.Sort();
-			UpdateArray(this, new EventSortArray(Matrix));
+			throw new NotImplementedException();
 		}
 	}
 }

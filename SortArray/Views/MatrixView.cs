@@ -1,4 +1,6 @@
-﻿using SortArray.Interfases;
+﻿using Common.Events;
+using SortArray.Enter;
+using SortArray.Interfases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,49 +11,95 @@ namespace SortArray.Views
 {
 	public class MatrixView : IView
 	{
-		public static int[,] _matrix;
-		public int[,] Matrix {
-			get {
-				return _matrix;
-			} set {
-				_matrix = value;
-			}
+		private CommandInfo[] MenuLevel_1;
+
+		public event EventHandler<EventArgsManually> EventInputManually;
+		public event EventHandler<EventArgsFile> EventInputFille;
+		public event EventHandler<EventArgsRandom> EventInputRandom;
+		public event Action<int> EventSort;
+		public event Action<bool> Continuation;
+
+		public MatrixView()
+		{
+			MenuLevel_1 = new CommandInfo[] {
+				new CommandInfo("вийти", null),
+				new CommandInfo("ввести дані вручну", ManualInput),
+				new CommandInfo("ввести дані через файл (*.csv.txt)", FilelInput),
+				new CommandInfo("заповнити масив випадковими числами", RandomInput),
+			};
 		}
 
-		public event Action<string> EnterLine;
-		public event Action EnterCommandMenuSort;
-		public event Action EnterCommandMenuCreateMatrix;
-
-		public void UpdateMatrix()
+		public void ShowMatrix(int[,] matrix, int time = 0)
 		{
-			int row = _matrix.GetUpperBound(0) + 1;
-			int col = _matrix.Length / row;
+			throw new NotImplementedException();
+		}
 
-			for (int i = 0; i < col; i++) {
-				for (int n = 0; n < row; n++)
+		public void ShowMainMenu()
+		{
+			Console.WriteLine("\n  Перелік команд меню:\n");
+			for (int i = 0; i < MenuLevel_1.Length; i++)
+			{
+				Console.WriteLine("\t{0,2} - {1}", i, MenuLevel_1[i].name);
+			}
+			Command command = EnterCommand();
+			if (command == null)
+			{
+				return;
+			}
+			command();
+		}
+
+		public void ShowSortMenu()
+		{
+			throw new NotImplementedException();
+		}
+
+		void ManualInput()
+		{
+			int[,] _matrix;
+			int j = Entering.EnterIntNext("Введіть ширину матриці");
+			int k = Entering.EnterIntNext("Введіть висоту матриці");
+			_matrix = new int[j, k];
+			for (int i = 0; i < k; i++)
+			{
+				for (int n = 0; n < j; n++)
 				{
-					Console.Write("   " + _matrix[n,i]);
+					_matrix[n, i] = Entering.EnterIntPrompt("Введіть " + (i + 1) + (n + 1) + " значення");
 				}
-				Console.WriteLine();
 			}
 
-			Console.WriteLine();
+			EventInputManually(this, new EventArgsManually(_matrix));
 		}
 
-		public void UpdateMenu(int level)
+		void FilelInput()
 		{
-			Console.WriteLine("UpdateMenu");
+			string fileName = Entering.EnterStringPrompt("Введіть назву файлу");
+			string way = Entering.EnterStringPrompt("Введіть шлях до файлу(якщо він не знаходиться в папці за замовчуванням)");
+
+			EventInputFille(this, new EventArgsFile(fileName, way));
 		}
 
-		public void Show() {
-			Menu.ShowCommandsMenu();
-			UpdateMatrix();
+		void RandomInput()
+		{
+			int row = Entering.EnterIntNext("Введіть ширину матриці");
+			int coll = Entering.EnterIntNext("Введіть висоту матриці");
+			int max = Entering.EnterIntPrompt("Введіть максимальне значення");
 
-			EnterLine(Console.ReadLine());
+			EventInputRandom(this, new EventArgsRandom(row, coll, max));
 		}
 
-		public void Enter() {
-			EnterLine(Console.ReadLine());
+		private Command EnterCommand()
+		{
+			int number;
+			while (true)
+			{
+				number = Entering.EnterIntPrompt("Введіть номер команди меню");
+				if (number < MenuLevel_1.Length && number >= 0)
+					return MenuLevel_1[number].command;
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("\tНемає команди з введеним номером!");
+				Console.ForegroundColor = ConsoleColor.Black;
+			}
 		}
 	}
 }

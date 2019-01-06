@@ -46,15 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandInfo.cs" />
-    <Compile Include="Commands.cs" />
-    <Compile Include="Controller\FileTextController.cs" />
     <Compile Include="Enter\Entering.cs" />
-    <Compile Include="Events\EventSortArray.cs" />
-    <Compile Include="Interfases\IFileText.cs" />
     <Compile Include="Interfases\IModel.cs" />
-    <Compile Include="Interfases\ISort.cs" />
     <Compile Include="Interfases\IView.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Presenters\MatrixPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -63,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="MVP.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
