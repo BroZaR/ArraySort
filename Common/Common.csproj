@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCCC3C15-3CAF-4154-BCD2-FB2AE597A8D8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>SortArray</RootNamespace>
-    <AssemblyName>SortArray</AssemblyName>
+    <ProjectGuid>{73AE8A9F-2257-46E6-9184-918D728A43C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,8 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,30 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandInfo.cs" />
-    <Compile Include="Commands.cs" />
-    <Compile Include="Controller\FileTextController.cs" />
-    <Compile Include="Enter\Entering.cs" />
-    <Compile Include="Events\EventSortArray.cs" />
-    <Compile Include="Interfases\IFileText.cs" />
-    <Compile Include="Interfases\IModel.cs" />
-    <Compile Include="Interfases\ISort.cs" />
-    <Compile Include="Interfases\IView.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Presenters\MatrixPresenter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Enums\EnumSort.cs" />
+    <Compile Include="Events\EventArgsFile.cs" />
+    <Compile Include="Events\EventArgsManually.cs" />
+    <Compile Include="Events\EventArgsRandom.cs" />
+    <Compile Include="Events\EventUpdateMatrix.cs" />
+    <Compile Include="Inputs\FileInput.cs" />
+    <Compile Include="Inputs\RandomInput.cs" />
+    <Compile Include="Interfases\IInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\MatrixView.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{73ae8a9f-2257-46e6-9184-918d728a43c7}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

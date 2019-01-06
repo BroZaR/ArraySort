@@ -9,10 +9,6 @@ namespace SortArray.Interfases
 {
 	public interface IModel
 	{
-		int[,] Matrix { get; }
-
-		void Sort(ISort sort);
-
-		event EventHandler<EventSortArray> UpdateArray;
+		event EventHandler<EventUpdateMatrix> UpdateMatrix;
 	}
 }

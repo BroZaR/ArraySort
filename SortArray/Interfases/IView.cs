@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace SortArray.Interfases
 {
 	public interface IView
 	{
-		int[,] Matrix { get; set; }
-
-		void Show();
-
-		event Action<string> EnterLine;
+		event EventHandler<EventArgsManually> EventInputManually;
+		event EventHandler<EventArgsFile> EventInputFille;
+		event EventHandler<EventArgsRandom> EventInputRandom;
+		event Action<int> EventSort;
+		event Action<bool> Continuation;
 	}
 }
