@@ -47,8 +47,6 @@
   <ItemGroup>
     <Compile Include="CommandInfo.cs" />
     <Compile Include="Enter\Entering.cs" />
-    <Compile Include="Interfases\IModel.cs" />
-    <Compile Include="Interfases\IView.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Presenters\MatrixPresenter.cs" />
     <Compile Include="Program.cs" />

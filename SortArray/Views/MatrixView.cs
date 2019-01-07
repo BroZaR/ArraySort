@@ -1,11 +1,8 @@
-﻿using Common.Events;
+﻿using Common.Enums;
+using Common.Events;
 using SortArray.Enter;
-using SortArray.Interfases;
+using Common.Interfases;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SortArray.Views
 {
@@ -16,7 +13,7 @@ namespace SortArray.Views
 		public event EventHandler<EventArgsManually> EventInputManually;
 		public event EventHandler<EventArgsFile> EventInputFille;
 		public event EventHandler<EventArgsRandom> EventInputRandom;
-		public event Action<int> EventSort;
+		public event Action<Sorts> EventSort;
 		public event Action<bool> Continuation;
 
 		public MatrixView()
@@ -29,7 +26,7 @@ namespace SortArray.Views
 			};
 		}
 
-		public void ShowMatrix(int[,] matrix, int time = 0)
+		public void ShowMatrix(int[,] matrix, int time, Sorts type)
 		{
 			throw new NotImplementedException();
 		}

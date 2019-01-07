@@ -1,10 +1,7 @@
-﻿using Common.Events;
-using SortArray.Interfases;
+﻿using Common.Enums;
+using Common.Events;
+using Common.Interfases;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SortArray.Models
 {
@@ -20,7 +17,7 @@ namespace SortArray.Models
 			UpdateMatrix(this, new EventUpdateMatrix(matrix));
 		}
 
-		public void SortMatrix(int keyEnum)
+		public void SortMatrix(Sorts keyEnum)
 		{
 			throw new NotImplementedException();
 		}

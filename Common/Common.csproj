@@ -49,6 +49,8 @@
     <Compile Include="Inputs\FileInput.cs" />
     <Compile Include="Inputs\RandomInput.cs" />
     <Compile Include="Interfases\IInput.cs" />
+    <Compile Include="Interfases\IModel.cs" />
+    <Compile Include="Interfases\IView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
