@@ -9,6 +9,7 @@ namespace SortArray.Views
 	public class MatrixView : IView
 	{
 		private CommandInfo[] MenuLevel_1;
+		private CommandSort[] MenuLevel_2;
 
 		public event EventHandler<EventArgsManually> EventInputManually;
 		public event EventHandler<EventArgsFile> EventInputFille;
@@ -24,31 +25,80 @@ namespace SortArray.Views
 				new CommandInfo("ввести дані через файл (*.csv.txt)", FilelInput),
 				new CommandInfo("заповнити масив випадковими числами", RandomInput),
 			};
+
+			MenuLevel_2 = new CommandSort[] {
+				new CommandSort("сортувати методом бульбашки", (Sorts)1),
+				new CommandSort("сортування вставками", (Sorts)2),
+				new CommandSort("сортування вибором", (Sorts)3),
+				new CommandSort("сортування злиттям", (Sorts)4),
+				new CommandSort("швидке сортування", (Sorts)5),
+				new CommandSort("сортувати всіма видами", (Sorts)6)
+			};
 		}
 
-		public void ShowMatrix(int[,] matrix, int time, Sorts type)
+		public void Show() {
+			ShowMainMenu();
+			Command command = EnterCommand();
+			if (command == null) {
+				return;
+			}
+			Console.WriteLine();
+			command();
+		}
+
+		public void InputMatrix(int[,] matrix)
+		{
+			ShowMatrix(matrix);
+			ShowSortMenu();
+			Sorts sort = EnterSorts();
+			Console.WriteLine();
+			Sort(sort);
+		}
+
+		public void SortMatrix(int[,] mattrix, int time, Sorts type)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void ShowMainMenu()
+		public void ShowError(string message)
+		{
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("\t" + message);
+			Console.ForegroundColor = ConsoleColor.Black;
+		}
+
+		private void ShowMatrix(int[,] mat)
+		{
+			int row = mat.GetUpperBound(0) + 1;
+			int coll = mat.Length / row;
+
+			Console.Write("\n  Матриця: \n\t");
+			for (int c = 0; c < coll; c++) {
+				for (int r = 0; r < row; r++) {
+					Console.Write("  " + mat[r,c]);
+				}
+				Console.Write("\n\t");
+			}
+
+			Console.WriteLine();
+		}
+
+		private void ShowMainMenu()
 		{
 			Console.WriteLine("\n  Перелік команд меню:\n");
 			for (int i = 0; i < MenuLevel_1.Length; i++)
 			{
 				Console.WriteLine("\t{0,2} - {1}", i, MenuLevel_1[i].name);
 			}
-			Command command = EnterCommand();
-			if (command == null)
-			{
-				return;
-			}
-			command();
 		}
 
-		public void ShowSortMenu()
+		private void ShowSortMenu()
 		{
-			throw new NotImplementedException();
+			Console.WriteLine("\n  Перелік команд сортування:\n");
+			for (int i = 0; i < MenuLevel_2.Length; i++)
+			{
+				Console.WriteLine("\t{0,2} - {1}", i, MenuLevel_2[i].name);
+			}
 		}
 
 		void ManualInput()
@@ -71,9 +121,8 @@ namespace SortArray.Views
 		void FilelInput()
 		{
 			string fileName = Entering.EnterStringPrompt("Введіть назву файлу");
-			string way = Entering.EnterStringPrompt("Введіть шлях до файлу(якщо він не знаходиться в папці за замовчуванням)");
 
-			EventInputFille(this, new EventArgsFile(fileName, way));
+			EventInputFille(this, new EventArgsFile(fileName));
 		}
 
 		void RandomInput()
@@ -85,6 +134,10 @@ namespace SortArray.Views
 			EventInputRandom(this, new EventArgsRandom(row, coll, max));
 		}
 
+		private void Sort(Sorts type) {
+			EventSort(type);
+		}
+
 		private Command EnterCommand()
 		{
 			int number;
@@ -93,6 +146,20 @@ namespace SortArray.Views
 				number = Entering.EnterIntPrompt("Введіть номер команди меню");
 				if (number < MenuLevel_1.Length && number >= 0)
 					return MenuLevel_1[number].command;
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("\tНемає команди з введеним номером!");
+				Console.ForegroundColor = ConsoleColor.Black;
+			}
+		}
+
+		private Sorts EnterSorts()
+		{
+			int number;
+			while (true)
+			{
+				number = Entering.EnterIntPrompt("Введіть номер команди меню");
+				if (number < MenuLevel_2.Length && number >= 0)
+					return MenuLevel_2[number].sort;
 				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine("\tНемає команди з введеним номером!");
 				Console.ForegroundColor = ConsoleColor.Black;

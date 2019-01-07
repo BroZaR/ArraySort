@@ -6,8 +6,6 @@ namespace Common.Inputs
 {
 	public class FileInput : IInput
 	{
-		private string wayToFile;
-
 		private string filename;
 		public string fileName
 		{
@@ -28,7 +26,7 @@ namespace Common.Inputs
 		{
 			get
 			{
-				if (fileExists && Regex.IsMatch(File.ReadAllText(fileName), @"^(-?[0-9]+,)*(-?[0-9]+)+"))
+				if (fileExists && Regex.IsMatch(File.ReadAllText(fileName), @"^((-?[0-9]+,)*(-?[0-9]+)+(\r\n)?)+$") && ValidRowColl(File.ReadAllText(fileName)))
 					return true;
 				else
 					return false;
@@ -39,11 +37,7 @@ namespace Common.Inputs
 		{
 			get
 			{
-				if (wayToFile != "" && fileName != null && File.Exists(wayToFile + fileName))
-				{
-					return true;
-				}
-				else if (fileName != null && File.Exists(fileName))
+				if (fileName != null && File.Exists(fileName))
 				{
 					return true;
 				}
@@ -54,10 +48,9 @@ namespace Common.Inputs
 			}
 		}
 
-		public FileInput(string _fileName, string _wayToFile = "")
+		public FileInput(string _fileName)
 		{
 			fileName = _fileName;
-			wayToFile = _wayToFile;
 		}
 
 		public int[,] Leading()
@@ -68,11 +61,11 @@ namespace Common.Inputs
 			}
 
 			string text = File.ReadAllText(fileName);
-			int row = 0, coll = 0;
+			int row = 1, coll = 1;
 			string number = "";
 			for (int i = 0; i < text.Length; i++)
 			{
-				if (text[i] == ',' && coll == 0)
+				if (text[i] == ',' && coll == 1)
 				{
 					row++;
 				}
@@ -90,16 +83,46 @@ namespace Common.Inputs
 					arr[_row, _coll] = int.Parse(number);
 					_row++;
 					number = "";
-				} else if (text[i] == '\n') {
+				} else if (text[i] == '\r' && text[i + 1] == '\n') {
 					arr[_row, _coll] = int.Parse(number);
 					_coll++;
+					i++;
 					_row = 0;
 					number = "";
-				} else {
+				}  else {
 					number += text[i];
 				}
 			}
+			arr[_row, _coll] = int.Parse(number);
+
 			return arr;
+		}
+
+		private bool ValidRowColl(string text) {
+			int row = 1, coll = 1, row1 = 0;
+			for (int i = 0; i < text.Length; i++)
+			{
+				if (text[i] == ',')
+				{
+					row++;
+				}
+				if (text[i] == '\n')
+				{
+					if (coll == 1) {
+						row1 = row;
+					}
+					coll++;
+					row++;
+				}
+			}
+
+			if ((row / coll) == row1)
+			{
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 }

@@ -12,8 +12,9 @@ namespace Common.Interfases
 		event Action<Sorts> EventSort;
 		event Action<bool> Continuation;
 
-		void ShowMainMenu();
-		void ShowSortMenu();
-		void ShowMatrix(int[,] matrix, int time, Sorts type);
+		void Show();
+		void InputMatrix(int[,] matrix);
+		void SortMatrix(int[,] mattrix, int time, Sorts type);
+		void ShowError(string message);
 	}
 }

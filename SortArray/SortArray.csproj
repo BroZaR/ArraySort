@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandInfo.cs" />
+    <Compile Include="CommandSort.cs" />
     <Compile Include="Enter\Entering.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Presenters\MatrixPresenter.cs" />

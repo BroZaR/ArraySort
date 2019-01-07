@@ -15,6 +15,11 @@ namespace Common.Events
 			type = _type;
 		}
 
+		public EventUpdateMatrix(int[,] _matrix)
+		{
+			matrix = _matrix;
+		}
+
 		public EventUpdateMatrix() { }
 	}
 }
