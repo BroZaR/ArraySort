@@ -5,6 +5,7 @@
 		SortInserts = 2,
 		SortBySelection = 3,
 		MergeSort = 4,
-		QuickSort = 5
+		QuickSort = 5,
+		AllSorts = 6
 	}
 }

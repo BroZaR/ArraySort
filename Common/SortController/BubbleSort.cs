@@ -9,7 +9,6 @@ namespace Common.SortController
 		public int[,] Sort()
 		{
 			bool swapped;
-			int row = matrix.GetUpperBound(0) + 1;
 
 			do
 			{
@@ -18,7 +17,7 @@ namespace Common.SortController
 				{
 					if (matrix[(i - 1) % row, (i - 1) / row].CompareTo(matrix[i % row, i / row]) > 0)
 					{
-						Swap(matrix, new int[] { (i - 1) % row, (i - 1) / row }, new int[] { i % row, i / row });
+						Swap(new int[] { (i - 1) % row, (i - 1) / row }, new int[] { i % row, i / row });
 						swapped = true;
 					}
 				}

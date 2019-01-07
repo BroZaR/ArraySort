@@ -10,15 +10,14 @@ namespace Common.SortController
 		public int[,] Sort()
 		{
 			int sortedRangeEndIndex = 1;
-			int row = matrix.GetUpperBound(0) + 1;
 
 			while (sortedRangeEndIndex < matrix.Length)
 			{
 				if (matrix[sortedRangeEndIndex % row, sortedRangeEndIndex / row]
 					.CompareTo(matrix[(sortedRangeEndIndex - 1) % row,(sortedRangeEndIndex - 1) / row]) < 0)
 				{
-					int insertIndex = FindInsertionIndex(row, matrix[sortedRangeEndIndex % row, sortedRangeEndIndex / row]);
-					Insert(row, insertIndex, sortedRangeEndIndex);
+					int insertIndex = FindInsertionIndex(matrix[sortedRangeEndIndex % row, sortedRangeEndIndex / row]);
+					Insert(insertIndex, sortedRangeEndIndex);
 				}
 
 				sortedRangeEndIndex++;
@@ -27,7 +26,7 @@ namespace Common.SortController
 			return matrix;
 		}
 
-		private int FindInsertionIndex(int row, int valueToInsert)
+		private int FindInsertionIndex(int valueToInsert)
 		{
 			for (int index = 0; index < matrix.Length; index++)
 			{
@@ -40,7 +39,7 @@ namespace Common.SortController
 			throw new InvalidOperationException("The insertion index was not found");
 		}
 
-		private void Insert(int row, int indexInsertingAt, int indexInsertingFrom)
+		private void Insert(int indexInsertingAt, int indexInsertingFrom)
 		{
 			// matrix =       0 1 2 4 5 6 3 7
 			// insertingAt =     3

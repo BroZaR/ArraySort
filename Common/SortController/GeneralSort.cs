@@ -3,18 +3,20 @@
 	public abstract class GeneralSort
 	{
 		protected int[,] matrix;
+		protected int row;
 
 		public GeneralSort(int[,] _matrix) {
 			matrix = _matrix;
+			row = _matrix.GetUpperBound(0) + 1;
 		}
 
-		protected void Swap(int[,] items, int[] left, int[] right)
+		protected void Swap(int[] left, int[] right)
 		{
 			if (left != right)
 			{
-				int temp = items[left[0],left[1]];
-				items[left[0], left[1]] = items[right[0], right[1]];
-				items[right[0], right[1]] = temp;
+				int temp = matrix[left[0],left[1]];
+				matrix[left[0], left[1]] = matrix[right[0], right[1]];
+				matrix[right[0], right[1]] = temp;
 			}
 		}
 	}

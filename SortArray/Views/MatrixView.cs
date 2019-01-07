@@ -66,6 +66,15 @@ namespace SortArray.Views
 				case (Sorts)2:
 					nameTipe = "Сортування вставками";
 					break;
+				case (Sorts)3:
+					nameTipe = "Сортування вибором";
+					break;
+				case (Sorts)4:
+					nameTipe = "Сортування злиттям";
+					break;
+				case (Sorts)5:
+					nameTipe = "Швидке сортування";
+					break;
 				default:
 					nameTipe = "Невідомий метод сортування";
 					break;
