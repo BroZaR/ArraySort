@@ -27,6 +27,9 @@ namespace SortArray.Models
 				case (Sorts)1:
 					sorter = new BubbleSort(matrix);
 					break;
+				case (Sorts)2:
+					sorter = new SortInserts(matrix);
+					break;
 				default:
 					sorter = new BubbleSort(matrix);
 					break;
