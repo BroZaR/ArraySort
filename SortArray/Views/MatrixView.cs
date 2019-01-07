@@ -55,9 +55,22 @@ namespace SortArray.Views
 			Sort(sort);
 		}
 
-		public void SortMatrix(int[,] mattrix, int time, Sorts type)
+		public void SortMatrix(int[,] matrix, TimeSpan time, Sorts type)
 		{
-			throw new NotImplementedException();
+			ShowMatrix(matrix);
+			string nameTipe;
+			switch (type) {
+				case (Sorts)1:
+					nameTipe = "Сортування методом бульбашки";
+					break;
+				default:
+					nameTipe = "Невідомий метод сортування";
+					break;
+			}
+			Console.WriteLine("  Тип сортування: " + nameTipe);
+			Console.WriteLine("  Час виконання сортування: " + time);
+
+			Continuation(Entering.EnterBoolUA("Хочите продовжити[так/ні]?"));
 		}
 
 		public void ShowError(string message)
@@ -101,7 +114,7 @@ namespace SortArray.Views
 			}
 		}
 
-		void ManualInput()
+		private void ManualInput()
 		{
 			int[,] _matrix;
 			int j = Entering.EnterIntNext("Введіть ширину матриці");
@@ -118,14 +131,14 @@ namespace SortArray.Views
 			EventInputManually(this, new EventArgsManually(_matrix));
 		}
 
-		void FilelInput()
+		private void FilelInput()
 		{
 			string fileName = Entering.EnterStringPrompt("Введіть назву файлу");
 
 			EventInputFille(this, new EventArgsFile(fileName));
 		}
 
-		void RandomInput()
+		private void RandomInput()
 		{
 			int row = Entering.EnterIntNext("Введіть ширину матриці");
 			int coll = Entering.EnterIntNext("Введіть висоту матриці");

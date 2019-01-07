@@ -49,21 +49,34 @@ namespace SortArray.Presenters
 			model.InputMatrix(e.data);
 		}
 
-		private void Model_UpdateMatrix(object sender, Common.Events.EventUpdateMatrix e)
+		private void Model_UpdateMatrix(int[,] matrix)
 		{
 			view.EventSort += View_EventSort;
-			view.InputMatrix(e.matrix);
+			view.InputMatrix(matrix);
 		}
 
 		private void View_EventSort(Common.Enums.Sorts obj)
 		{
-			model.UpdateMatrix += Model_UpdateMatrix1;
+			model.SortsMatrix += Model_SortsMatrix;
 			model.SortMatrix(obj);
 		}
 
-		private void Model_UpdateMatrix1(object sender, Common.Events.EventUpdateMatrix e)
+		private void Model_SortsMatrix(object sender, Common.Events.EventUpdateMatrix e)
 		{
+			view.Continuation += View_Continuation;
 			view.SortMatrix(e.matrix, e.time, e.type);
+		}
+
+		private void View_Continuation(bool obj)
+		{
+			if (obj)
+			{
+				Start();
+			}
+			else
+			{
+				return;
+			}
 		}
 	}
 }

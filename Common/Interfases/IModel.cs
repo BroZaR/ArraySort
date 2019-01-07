@@ -6,7 +6,8 @@ namespace Common.Interfases
 {
 	public interface IModel
 	{
-		event EventHandler<EventUpdateMatrix> UpdateMatrix;
+		event Action<int[,]> UpdateMatrix;
+		event EventHandler<EventUpdateMatrix> SortsMatrix;
 
 		void InputMatrix(int[,] matrix);
 		void SortMatrix(Sorts keyEnum);
