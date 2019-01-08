@@ -10,7 +10,6 @@ namespace Common.Interfases
 		event EventHandler<EventArgsFile> EventInputFille;
 		event EventHandler<EventArgsRandom> EventInputRandom;
 		event Action<Sorts> EventSort;
-		event Action<bool> Continuation;
 
 		void Show();
 		void InputMatrix(int[,] matrix);

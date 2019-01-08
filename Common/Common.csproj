@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortController\BubbleSort.cs" />
     <Compile Include="SortController\GeneralSort.cs" />
+    <Compile Include="SortController\QuickSort.cs" />
     <Compile Include="SortController\SortBySelection.cs" />
     <Compile Include="SortController\SortInserts.cs" />
   </ItemGroup>

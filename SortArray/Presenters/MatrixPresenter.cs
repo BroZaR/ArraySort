@@ -63,20 +63,7 @@ namespace SortArray.Presenters
 
 		private void Model_SortsMatrix(object sender, Common.Events.EventUpdateMatrix e)
 		{
-			view.Continuation += View_Continuation;
 			view.SortMatrix(e.matrix, e.time, e.type);
-		}
-
-		private void View_Continuation(bool obj)
-		{
-			if (obj)
-			{
-				Start();
-			}
-			else
-			{
-				return;
-			}
 		}
 	}
 }

@@ -9,13 +9,18 @@ namespace SortArray.Views
 	public class MatrixView : IView
 	{
 		private CommandInfo[] MenuLevel_1;
-		private CommandSort[] MenuLevel_2;
+		private CommandSort[] MenuLevel_2 = new CommandSort[] {
+			new CommandSort("сортувати методом бульбашки", (Sorts)1),
+			new CommandSort("сортування вставками", (Sorts)2),
+			new CommandSort("сортування вибором", (Sorts)3),
+			new CommandSort("швидке сортування", (Sorts)5),
+			new CommandSort("сортувати всіма видами", (Sorts)6)
+		};
 
 		public event EventHandler<EventArgsManually> EventInputManually;
 		public event EventHandler<EventArgsFile> EventInputFille;
 		public event EventHandler<EventArgsRandom> EventInputRandom;
 		public event Action<Sorts> EventSort;
-		public event Action<bool> Continuation;
 
 		public MatrixView()
 		{
@@ -24,15 +29,6 @@ namespace SortArray.Views
 				new CommandInfo("ввести дані вручну", ManualInput),
 				new CommandInfo("ввести дані через файл (*.csv.txt)", FilelInput),
 				new CommandInfo("заповнити масив випадковими числами", RandomInput),
-			};
-
-			MenuLevel_2 = new CommandSort[] {
-				new CommandSort("сортувати методом бульбашки", (Sorts)1),
-				new CommandSort("сортування вставками", (Sorts)2),
-				new CommandSort("сортування вибором", (Sorts)3),
-				new CommandSort("сортування злиттям", (Sorts)4),
-				new CommandSort("швидке сортування", (Sorts)5),
-				new CommandSort("сортувати всіма видами", (Sorts)6)
 			};
 		}
 
@@ -69,9 +65,6 @@ namespace SortArray.Views
 				case (Sorts)3:
 					nameTipe = "Сортування вибором";
 					break;
-				case (Sorts)4:
-					nameTipe = "Сортування злиттям";
-					break;
 				case (Sorts)5:
 					nameTipe = "Швидке сортування";
 					break;
@@ -82,7 +75,13 @@ namespace SortArray.Views
 			Console.WriteLine("  Тип сортування: " + nameTipe);
 			Console.WriteLine("  Час виконання сортування: " + time);
 
-			Continuation(Entering.EnterBoolUA("Хочите продовжити[так/ні]?"));
+			if (Entering.EnterBoolUA("Хочите продовжити[так/ні]?"))
+			{
+				Show();
+			}
+			else {
+				return;
+			}
 		}
 
 		public void ShowError(string message)

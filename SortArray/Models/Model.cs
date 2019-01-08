@@ -33,12 +33,9 @@ namespace SortArray.Models
 				case (Sorts)3:
 					sorter = new SortBySelection(matrix);
 					break;
-				/*case (Sorts)4:
-					sorter = new MergeSort(matrix);
-					break;
 				case (Sorts)5:
 					sorter = new QuickSort(matrix);
-					break;*/
+					break;
 				default:
 					sorter = new BubbleSort(matrix);
 					break;
