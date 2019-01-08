@@ -78,13 +78,7 @@ namespace SortArray.Views
 				Console.WriteLine("  Час виконання сортування: " + time[i] + "\n");
 			}
 
-			if (Entering.EnterBoolUA("Хочите продовжити[так/ні]?"))
-			{
-				Show();
-			}
-			else {
-				return;
-			}
+			Show();
 		}
 
 		public void ShowError(string message)

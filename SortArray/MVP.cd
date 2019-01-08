@@ -1,27 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="SortArray.Models.Model">
-    <Position X="6" Y="2.75" Width="1.75" />
+    <Position X="5.75" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAABACAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAACAAAAAAgAAAABACAgAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Models\Model.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SortArray.Views.MatrixView">
-    <Position X="0.5" Y="3.5" Width="1.75" />
+    <Position X="0.5" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAEACAACZCAAQABAEAEAIAKAAEAAAABA=</HashCode>
+      <HashCode>AAAAAAACAAAAAEECAASZCAAQABAEAEAIACAAEAAAABA=</HashCode>
       <FileName>Views\MatrixView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SortArray.Presenters.MatrixPresenter">
-    <Position X="3.25" Y="0.5" Width="1.75" />
+    <Position X="3" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAACAABAAAAAAAAAAAoABAQAAAAAIAAQ=</HashCode>
+      <HashCode>AAAAAAAAACAAAAGAABAAAAAAAAAAAIABAQAAAAAIAAQ=</HashCode>
       <FileName>Presenters\MatrixPresenter.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="Common.Interfases.IView">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Common.Interfases.IModel">
+    <Position X="5.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
