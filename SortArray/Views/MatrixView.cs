@@ -51,29 +51,32 @@ namespace SortArray.Views
 			Sort(sort);
 		}
 
-		public void SortMatrix(int[,] matrix, TimeSpan time, Sorts type)
+		public void SortMatrix(int[,] matrix, TimeSpan[] time, Sorts[] type)
 		{
 			ShowMatrix(matrix);
 			string nameTipe;
-			switch (type) {
-				case (Sorts)1:
-					nameTipe = "Сортування методом бульбашки";
-					break;
-				case (Sorts)2:
-					nameTipe = "Сортування вставками";
-					break;
-				case (Sorts)3:
-					nameTipe = "Сортування вибором";
-					break;
-				case (Sorts)5:
-					nameTipe = "Швидке сортування";
-					break;
-				default:
-					nameTipe = "Невідомий метод сортування";
-					break;
+			for (int i = 0; i < time.Length; i++) {
+				switch (type[i])
+				{
+					case (Sorts)1:
+						nameTipe = "Сортування методом бульбашки";
+						break;
+					case (Sorts)2:
+						nameTipe = "Сортування вставками";
+						break;
+					case (Sorts)3:
+						nameTipe = "Сортування вибором";
+						break;
+					case (Sorts)5:
+						nameTipe = "Швидке сортування";
+						break;
+					default:
+						nameTipe = "Невідомий метод сортування";
+						break;
+				}
+				Console.WriteLine("  Тип сортування: " + nameTipe);
+				Console.WriteLine("  Час виконання сортування: " + time[i] + "\n");
 			}
-			Console.WriteLine("  Тип сортування: " + nameTipe);
-			Console.WriteLine("  Час виконання сортування: " + time);
 
 			if (Entering.EnterBoolUA("Хочите продовжити[так/ні]?"))
 			{
@@ -170,9 +173,7 @@ namespace SortArray.Views
 				number = Entering.EnterIntPrompt("Введіть номер команди меню");
 				if (number < MenuLevel_1.Length && number >= 0)
 					return MenuLevel_1[number].command;
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("\tНемає команди з введеним номером!");
-				Console.ForegroundColor = ConsoleColor.Black;
+				ShowError("Немає команди з введеним номером!");
 			}
 		}
 
@@ -184,9 +185,7 @@ namespace SortArray.Views
 				number = Entering.EnterIntPrompt("Введіть номер команди меню");
 				if (number < MenuLevel_2.Length && number >= 0)
 					return MenuLevel_2[number].sort;
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("\tНемає команди з введеним номером!");
-				Console.ForegroundColor = ConsoleColor.Black;
+				ShowError("Немає команди з введеним номером!");
 			}
 		}
 	}
