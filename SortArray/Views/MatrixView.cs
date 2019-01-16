@@ -3,6 +3,7 @@ using Common.Events;
 using SortArray.Enter;
 using Common.Interfases;
 using System;
+using Common.Extensions;
 
 namespace SortArray.Views
 {
@@ -54,27 +55,9 @@ namespace SortArray.Views
 		public void SortMatrix(int[,] matrix, TimeSpan[] time, Sorts[] type)
 		{
 			ShowMatrix(matrix);
-			string nameTipe;
 			for (int i = 0; i < time.Length; i++) {
-				switch (type[i])
-				{
-					case (Sorts)1:
-						nameTipe = "Сортування методом бульбашки";
-						break;
-					case (Sorts)2:
-						nameTipe = "Сортування вставками";
-						break;
-					case (Sorts)3:
-						nameTipe = "Сортування вибором";
-						break;
-					case (Sorts)5:
-						nameTipe = "Швидке сортування";
-						break;
-					default:
-						nameTipe = "Невідомий метод сортування";
-						break;
-				}
-				Console.WriteLine("  Тип сортування: " + nameTipe);
+				
+				Console.WriteLine("  Тип сортування: " + type[i].GetDescription());
 				Console.WriteLine("  Час виконання сортування: " + time[i] + "\n");
 			}
 
