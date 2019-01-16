@@ -18,19 +18,20 @@ namespace SortArray.Presenters
 			view.EventInputManually += View_EventInputManually;
 			view.EventInputFille += View_EventInputFille;
 			view.EventInputRandom += View_EventInputRandom;
+			model.UpdateMatrix += Model_UpdateMatrix;
+			view.EventSort += View_EventSort;
+			model.SortsMatrix += Model_SortsMatrix;
 			view.Show();
 		}
 
 		private void View_EventInputRandom(object sender, Common.Events.EventArgsRandom e)
 		{
-			model.UpdateMatrix += Model_UpdateMatrix;
 			var input = new RandomInput(e.row, e.coll, e.max);
 			model.InputMatrix(input.Leading());
 		}
 
 		private void View_EventInputFille(object sender, Common.Events.EventArgsFile e)
 		{
-			model.UpdateMatrix += Model_UpdateMatrix;
 			var input = new FileInput(e.fileName);
 			if (!input.fileExists) {
 				view.ShowError("Файлу з введеною назвою не існує!");
@@ -45,20 +46,17 @@ namespace SortArray.Presenters
 
 		private void View_EventInputManually(object sender, Common.Events.EventArgsManually e)
 		{
-			model.UpdateMatrix += Model_UpdateMatrix;
 			var input = new ManualInput(e._coll, e._row);
 			model.InputMatrix(input.Leading());
 		}
 
 		private void Model_UpdateMatrix(int[,] matrix)
 		{
-			view.EventSort += View_EventSort;
 			view.InputMatrix(matrix);
 		}
 
 		private void View_EventSort(Common.Enums.Sorts obj)
 		{
-			model.SortsMatrix += Model_SortsMatrix;
 			model.SortMatrix(obj);
 		}
 

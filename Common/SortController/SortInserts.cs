@@ -3,11 +3,11 @@ using System;
 
 namespace Common.SortController
 {
-	public class SortInserts : GeneralSort, ISort
+	public class SortInserts : GeneralSort
 	{
 		public SortInserts(int[,] _matrix) : base(_matrix) { }
 
-		public int[,] Sort()
+		public override int[,] Sort()
 		{
 			int sortedRangeEndIndex = 1;
 

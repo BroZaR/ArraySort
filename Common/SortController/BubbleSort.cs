@@ -1,12 +1,10 @@
-﻿using Common.Interfases;
-
-namespace Common.SortController
+﻿namespace Common.SortController
 {
-	public class BubbleSort : GeneralSort, ISort
+	public class BubbleSort : GeneralSort
 	{
 		public BubbleSort(int[,] _matrix) : base(_matrix) { }
 
-		public int[,] Sort()
+		public override int[,] Sort()
 		{
 			bool swapped;
 

@@ -1,6 +1,8 @@
-﻿namespace Common.SortController
+﻿using Common.Interfases;
+
+namespace Common.SortController
 {
-	public abstract class GeneralSort
+	public abstract class GeneralSort : ISort
 	{
 		protected int[,] matrix;
 		protected int row;
@@ -9,6 +11,8 @@
 			matrix = _matrix;
 			row = _matrix.GetUpperBound(0) + 1;
 		}
+
+		public abstract int[,] Sort();
 
 		protected void Swap(int[] left, int[] right)
 		{

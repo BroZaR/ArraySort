@@ -1,15 +1,14 @@
-﻿using Common.Interfases;
-using System;
+﻿using System;
 
 namespace Common.SortController
 {
-	public class QuickSort : GeneralSort, ISort
+	public class QuickSort : GeneralSort
 	{
 		private Random _pivotRng = new Random();
 
 		public QuickSort(int[,] _matrix) : base(_matrix) { }
 
-		public int[,] Sort()
+		public override int[,] Sort()
 		{
 			quicksort(0, matrix.Length - 1);
 

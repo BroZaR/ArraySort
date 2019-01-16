@@ -2,11 +2,11 @@
 
 namespace Common.SortController
 {
-	public class SortBySelection : GeneralSort, ISort
+	public class SortBySelection : GeneralSort
 	{
 		public SortBySelection(int[,] _matrix) : base(_matrix) { }
 
-		public int[,] Sort()
+		public override int[,] Sort()
 		{
 			int sortedRangeEnd = 0;
 
