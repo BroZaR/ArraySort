@@ -1,6 +1,6 @@
 ﻿using Common.Enums;
 using Common.Events;
-using SortArray.Enter;
+using BasicConsole.Enter;
 using Common.Interfases;
 using System;
 using Common.Extensions;
@@ -107,19 +107,10 @@ namespace SortArray.Views
 
 		private void ManualInput()
 		{
-			int[,] _matrix;
 			int j = Entering.EnterIntNext("Введіть ширину матриці");
 			int k = Entering.EnterIntNext("Введіть висоту матриці");
-			_matrix = new int[j, k];
-			for (int i = 0; i < k; i++)
-			{
-				for (int n = 0; n < j; n++)
-				{
-					_matrix[n, i] = Entering.EnterIntPrompt("Введіть " + (i + 1) + (n + 1) + " значення");
-				}
-			}
 
-			EventInputManually(this, new EventArgsManually(_matrix));
+			EventInputManually(this, new EventArgsManually(j, k));
 		}
 
 		private void FilelInput()

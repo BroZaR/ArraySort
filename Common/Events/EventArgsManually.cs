@@ -4,10 +4,12 @@ namespace Common.Events
 {
 	public class EventArgsManually : EventArgs
 	{
-		public int[,] data;
+		public int _coll;
+		public int _row;
 
-		public EventArgsManually(int[,] _matrix) {
-			data = _matrix;
+		public EventArgsManually(int coll, int row) {
+			_coll = coll;
+			_row = row;
 		}
 
 		public EventArgsManually() { }

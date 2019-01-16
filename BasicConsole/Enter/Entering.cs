@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SortArray.Enter
+namespace BasicConsole.Enter
 {
 	public static class Entering
 	{

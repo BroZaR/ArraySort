@@ -46,7 +46,8 @@ namespace SortArray.Presenters
 		private void View_EventInputManually(object sender, Common.Events.EventArgsManually e)
 		{
 			model.UpdateMatrix += Model_UpdateMatrix;
-			model.InputMatrix(e.data);
+			var input = new ManualInput(e._coll, e._row);
+			model.InputMatrix(input.Leading());
 		}
 
 		private void Model_UpdateMatrix(int[,] matrix)

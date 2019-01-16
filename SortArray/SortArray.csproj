@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="CommandInfo.cs" />
     <Compile Include="CommandSort.cs" />
-    <Compile Include="Enter\Entering.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Presenters\MatrixPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -59,10 +58,17 @@
     <None Include="MVP.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BasicConsole\BasicConsole.csproj">
+      <Project>{dfb7311e-6b05-4bab-afd6-6fd046251819}</Project>
+      <Name>BasicConsole</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{73ae8a9f-2257-46e6-9184-918d728a43c7}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
