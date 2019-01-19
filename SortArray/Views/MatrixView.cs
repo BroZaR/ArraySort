@@ -9,6 +9,8 @@ namespace SortArray.Views
 {
 	public class MatrixView : IView
 	{
+		private int _count = 1;
+
 		private CommandInfo[] MenuLevel_1;
 		private CommandSort[] MenuLevel_2 = new CommandSort[] {
 			new CommandSort("сортувати методом бульбашки", (Sorts)1),
@@ -57,8 +59,12 @@ namespace SortArray.Views
 			ShowMatrix(matrix);
 			Console.WriteLine("  Тип сортування: " + type.GetDescription());
 			Console.WriteLine("  Час виконання сортування: " + time + "\n");
+			_count--;
 
-			Show();
+			if (_count == 0) {
+				_count = 1;
+				Show();
+			}
 		}
 
 		public void ShowError(string message)
@@ -127,6 +133,9 @@ namespace SortArray.Views
 		}
 
 		private void Sort(Sorts type) {
+			if (Sorts.AllSorts == type) {
+				_count = Enum.GetNames(typeof(Sorts)).Length - 1;
+			}
 			EventSort(type);
 		}
 
