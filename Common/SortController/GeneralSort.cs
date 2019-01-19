@@ -7,9 +7,11 @@ namespace Common.SortController
 		protected int[,] matrix;
 		protected int row;
 
-		public GeneralSort(int[,] _matrix) {
-			matrix = _matrix;
-			row = _matrix.GetUpperBound(0) + 1;
+		public int[,] Matrix {
+			set {
+				matrix = value;
+				row = value.GetUpperBound(0) + 1;
+			}
 		}
 
 		public abstract int[,] Sort();

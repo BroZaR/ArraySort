@@ -4,7 +4,7 @@ namespace Common.SortController
 {
 	public class SortBySelection : GeneralSort
 	{
-		public SortBySelection(int[,] _matrix) : base(_matrix) { }
+		public SortBySelection() { }
 
 		public override int[,] Sort()
 		{

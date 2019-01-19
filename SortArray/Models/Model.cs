@@ -1,8 +1,10 @@
-﻿using Common.Enums;
+﻿using Common.Creator;
+using Common.Enums;
 using Common.Events;
 using Common.Interfases;
 using Common.SortController;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SortArray.Models
@@ -10,6 +12,9 @@ namespace SortArray.Models
 	public class Model : IModel
 	{
 		private int[,] matrix;
+		public Dictionary<Sorts, SortManager> CreateSorter = new Dictionary<Sorts, SortManager> {
+			{  Sorts.BubbleSort, new BubbleSortMenager() }
+		};
 
 		public event Action<int[,]> UpdateMatrix;
 		public event EventHandler<EventUpdateMatrix> SortsMatrix;
@@ -20,7 +25,35 @@ namespace SortArray.Models
 			UpdateMatrix(matrix);
 		}
 
-		public void SortMatrix(Sorts keyEnum)
+		public void SortMatrix(Sorts keyEnum) {
+			SortManager sortManager = CreateSorter[keyEnum];
+
+			var timer = new Stopwatch();
+			int[,] mat;
+
+			timer.Start();
+			mat = sortManager.Sorting(CopyMatrix());
+			timer.Stop();
+
+			SortsMatrix(this, new EventUpdateMatrix(mat, timer.Elapsed, keyEnum));
+		}
+
+		private int[,] CopyMatrix() {
+			int row = matrix.GetUpperBound(0) + 1;
+			int coll = matrix.Length / row;
+
+			int[,] mat = new int[row, coll];
+			for (int r = 0; r < row; r ++) {
+				for (int c = 0; c < coll; c++)
+				{
+					mat[r, c] = matrix[r, c];
+				}
+			}
+
+			return mat;
+		}
+
+		/*public void SortMatrix(Sorts keyEnum)
 		{
 			TimeSpan[] time;
 			Sorts[] sort;
@@ -53,7 +86,7 @@ namespace SortArray.Models
 			switch (key)
 			{
 				case (Sorts)1:
-					sorter = new BubbleSort(matrix);
+					sorter = new BubbleSort();
 					break;
 				case (Sorts)2:
 					sorter = new SortInserts(matrix);
@@ -65,7 +98,7 @@ namespace SortArray.Models
 					sorter = new QuickSort(matrix);
 					break;
 				default:
-					sorter = new BubbleSort(matrix);
+					sorter = new BubbleSort();
 					break;
 			}
 			var timer = new Stopwatch();
@@ -82,6 +115,6 @@ namespace SortArray.Models
 			}
 
 			return timer.Elapsed;
-		}
+		}*/
 	}
 }

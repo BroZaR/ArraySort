@@ -5,7 +5,7 @@ namespace Common.SortController
 {
 	public class SortInserts : GeneralSort
 	{
-		public SortInserts(int[,] _matrix) : base(_matrix) { }
+		public SortInserts() { }
 
 		public override int[,] Sort()
 		{

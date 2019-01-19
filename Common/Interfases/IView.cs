@@ -13,7 +13,7 @@ namespace Common.Interfases
 
 		void Show();
 		void InputMatrix(int[,] matrix);
-		void SortMatrix(int[,] mattrix, TimeSpan[] time, Sorts[] type);
+		void SortMatrix(int[,] mattrix, TimeSpan time, Sorts type);
 		void ShowError(string message);
 	}
 }

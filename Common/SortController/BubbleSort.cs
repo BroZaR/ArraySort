@@ -2,7 +2,7 @@
 {
 	public class BubbleSort : GeneralSort
 	{
-		public BubbleSort(int[,] _matrix) : base(_matrix) { }
+		public BubbleSort() { }
 
 		public override int[,] Sort()
 		{

@@ -52,14 +52,11 @@ namespace SortArray.Views
 			Sort(sort);
 		}
 
-		public void SortMatrix(int[,] matrix, TimeSpan[] time, Sorts[] type)
+		public void SortMatrix(int[,] matrix, TimeSpan time, Sorts type)
 		{
 			ShowMatrix(matrix);
-			for (int i = 0; i < time.Length; i++) {
-				
-				Console.WriteLine("  Тип сортування: " + type[i].GetDescription());
-				Console.WriteLine("  Час виконання сортування: " + time[i] + "\n");
-			}
+			Console.WriteLine("  Тип сортування: " + type.GetDescription());
+			Console.WriteLine("  Час виконання сортування: " + time + "\n");
 
 			Show();
 		}

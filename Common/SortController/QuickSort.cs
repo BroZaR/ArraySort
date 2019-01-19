@@ -6,7 +6,7 @@ namespace Common.SortController
 	{
 		private Random _pivotRng = new Random();
 
-		public QuickSort(int[,] _matrix) : base(_matrix) { }
+		public QuickSort() { }
 
 		public override int[,] Sort()
 		{

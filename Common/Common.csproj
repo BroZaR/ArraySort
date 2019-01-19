@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Creator\BubbleSortMenager.cs" />
+    <Compile Include="Creator\SortManager.cs" />
     <Compile Include="Enums\EnumSort.cs" />
     <Compile Include="Events\EventArgsFile.cs" />
     <Compile Include="Events\EventArgsManually.cs" />
@@ -67,5 +69,6 @@
       <Name>BasicConsole</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
