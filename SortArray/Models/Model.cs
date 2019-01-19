@@ -13,7 +13,10 @@ namespace SortArray.Models
 	{
 		private int[,] matrix;
 		public Dictionary<Sorts, SortManager> CreateSorter = new Dictionary<Sorts, SortManager> {
-			{  Sorts.BubbleSort, new BubbleSortMenager() }
+			{  Sorts.BubbleSort, new BubbleSortManager() },
+			{  Sorts.SortInserts, new InsertsSortManager() },
+			{  Sorts.SortBySelection, new SelectionSortManager() },
+			{  Sorts.QuickSort, new QuickSortManager() }
 		};
 
 		public event Action<int[,]> UpdateMatrix;
@@ -26,7 +29,27 @@ namespace SortArray.Models
 		}
 
 		public void SortMatrix(Sorts keyEnum) {
-			SortManager sortManager = CreateSorter[keyEnum];
+			SortManager sortManager;
+
+			if (keyEnum == Sorts.AllSorts)
+			{
+				foreach (Sorts el in Enum.GetValues(typeof(Sorts)))
+				{
+					if (el == Sorts.AllSorts)
+					{
+						continue;
+					}
+					sortManager = CreateSorter[el];
+					Sorter(sortManager, el);
+				}
+			}
+			else {
+				sortManager = CreateSorter[keyEnum];
+				Sorter(sortManager, keyEnum);
+			}
+		}
+
+		private void Sorter(SortManager sortManager, Sorts type) {
 
 			var timer = new Stopwatch();
 			int[,] mat;
@@ -35,7 +58,7 @@ namespace SortArray.Models
 			mat = sortManager.Sorting(CopyMatrix());
 			timer.Stop();
 
-			SortsMatrix(this, new EventUpdateMatrix(mat, timer.Elapsed, keyEnum));
+			SortsMatrix(this, new EventUpdateMatrix(mat, timer.Elapsed, type));
 		}
 
 		private int[,] CopyMatrix() {

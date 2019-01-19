@@ -3,7 +3,7 @@ using Common.SortController;
 
 namespace Common.Creator
 {
-	public class BubbleSortMenager : SortManager
+	public class BubbleSortManager : SortManager
 	{
 		public override ISort CreateClassSort()
 		{

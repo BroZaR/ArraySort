@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Creator\BubbleSortMenager.cs" />
+    <Compile Include="Creator\BubbleSortManager.cs" />
+    <Compile Include="Creator\InsertsSortManager.cs" />
+    <Compile Include="Creator\QuickSortManager.cs" />
+    <Compile Include="Creator\SelectionSortManager.cs" />
     <Compile Include="Creator\SortManager.cs" />
     <Compile Include="Enums\EnumSort.cs" />
     <Compile Include="Events\EventArgsFile.cs" />
