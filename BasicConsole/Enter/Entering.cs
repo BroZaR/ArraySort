@@ -52,14 +52,14 @@ namespace BasicConsole.Enter
 				{
 					return true;
 				}
-				else if (s == "ні")
+				if (s == "ні")
 				{
 					return false;
-				} else {
-					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine("\tПотрібно ввести значення \"так\" або \"ні\"!");
-					Console.ForegroundColor = ConsoleColor.Black;
 				}
+
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("\tПотрібно ввести значення \"так\" або \"ні\"!");
+				Console.ForegroundColor = ConsoleColor.Black;
 			}
 		}
 	}
