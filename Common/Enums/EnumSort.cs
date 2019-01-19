@@ -5,18 +5,18 @@ namespace Common.Enums
 	public enum Sorts {
 
 		[Description("Сортування методом бульбашки")]
-		BubbleSort = 1,
+		BubbleSort = 0,
 
 		[Description("Сортування вставками")]
-		SortInserts = 2,
+		SortInserts,
 
 		[Description("Сортування вибором")]
-		SortBySelection = 3,
+		SortBySelection,
 
 		[Description("Швидке сортування")]
-		QuickSort = 5,
+		QuickSort,
 
 		[Description("Сортування всіма методами")]
-		AllSorts = 6
+		AllSorts
 	}
 }

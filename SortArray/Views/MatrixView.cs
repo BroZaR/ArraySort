@@ -11,14 +11,7 @@ namespace SortArray.Views
 	{
 		private int _count = 1;
 
-		private CommandInfo[] MenuLevel_1;
-		private CommandSort[] MenuLevel_2 = new CommandSort[] {
-			new CommandSort("сортувати методом бульбашки", (Sorts)1),
-			new CommandSort("сортування вставками", (Sorts)2),
-			new CommandSort("сортування вибором", (Sorts)3),
-			new CommandSort("швидке сортування", (Sorts)5),
-			new CommandSort("сортувати всіма видами", (Sorts)6)
-		};
+		private CommandInfo[] MenuInput;
 
 		public event EventHandler<EventArgsManually> EventInputManually;
 		public event EventHandler<EventArgsFile> EventInputFille;
@@ -27,7 +20,7 @@ namespace SortArray.Views
 
 		public MatrixView()
 		{
-			MenuLevel_1 = new CommandInfo[] {
+			MenuInput = new CommandInfo[] {
 				new CommandInfo("вийти", null),
 				new CommandInfo("ввести дані вручну", ManualInput),
 				new CommandInfo("ввести дані через файл (*.csv.txt)", FilelInput),
@@ -93,18 +86,18 @@ namespace SortArray.Views
 		private void ShowMainMenu()
 		{
 			Console.WriteLine("\n  Перелік команд меню:\n");
-			for (int i = 0; i < MenuLevel_1.Length; i++)
+			for (int i = 0; i < MenuInput.Length; i++)
 			{
-				Console.WriteLine("\t{0,2} - {1}", i, MenuLevel_1[i].name);
+				Console.WriteLine("\t{0,2} - {1}", i, MenuInput[i].name);
 			}
 		}
 
 		private void ShowSortMenu()
 		{
 			Console.WriteLine("\n  Перелік команд сортування:\n");
-			for (int i = 0; i < MenuLevel_2.Length; i++)
+			foreach (Sorts el in Enum.GetValues(typeof(Sorts)))
 			{
-				Console.WriteLine("\t{0,2} - {1}", i, MenuLevel_2[i].name);
+				Console.WriteLine("\t{0} - {1}", (int)el, el.GetDescription());
 			}
 		}
 
@@ -145,8 +138,8 @@ namespace SortArray.Views
 			while (true)
 			{
 				number = Entering.EnterIntPrompt("Введіть номер команди меню");
-				if (number < MenuLevel_1.Length && number >= 0)
-					return MenuLevel_1[number].command;
+				if (number < MenuInput.Length && number >= 0)
+					return MenuInput[number].command;
 				ShowError("Немає команди з введеним номером!");
 			}
 		}
@@ -157,8 +150,13 @@ namespace SortArray.Views
 			while (true)
 			{
 				number = Entering.EnterIntPrompt("Введіть номер команди меню");
-				if (number < MenuLevel_2.Length && number >= 0)
-					return MenuLevel_2[number].sort;
+				foreach (Sorts el in Enum.GetValues(typeof(Sorts)))
+				{
+					if ((int)el == number)
+					{
+						return el;
+					}
+				}
 				ShowError("Немає команди з введеним номером!");
 			}
 		}
